@@ -46,6 +46,7 @@ with pkgs; let
       cd ..
       sed -i 's:^extension_dir = .*:extension_dir = "'$("$out/bin/php-config" --extension-dir)'":' "$out/lib/php.ini"
       echo "extension=suhosin.so" >> "$out/lib/php.ini"
+      echo "sendmail_path=/run/wrappers/bin/sendmail -t -i" >> "$out/lib/php.ini"
     '';
     buildInputs = [ zlib bzip2 curlFull libmcrypt mysql57 libxml2 lzma m_libjpeg m_libpng autoconf automake ];
   };
