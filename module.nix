@@ -30,6 +30,7 @@ in {
                 Group = "nginx";
                 RuntimeDirectory = "php52-fpm";
                 LogsDirectory = "php52-fpm";
+                Restart = "always";
             };
         };
     };

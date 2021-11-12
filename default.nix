@@ -45,6 +45,8 @@ with pkgs; let
       make install
       cd ..
       sed -i 's:^extension_dir = .*:extension_dir = "'$("$out/bin/php-config" --extension-dir)'":' "$out/lib/php.ini"
+      sed -i 's:^upload_max_filesize = .*:upload_max_filesize = 200M:' "$out/lib/php.ini"
+      sed -i 's:^post_max_size = .*:post_max_size = 200M:' "$out/lib/php.ini"
       echo "extension=suhosin.so" >> "$out/lib/php.ini"
       echo "sendmail_path=/run/wrappers/bin/sendmail -t -i" >> "$out/lib/php.ini"
     '';
@@ -77,7 +79,7 @@ in
         # Block access to "hidden" files and directories whose names begin with a
         # period. This includes directories used by version control systems such
         # as Subversion or Git to store control files.
-        "~ (^|/)\\." = { return = "403"; };
+        "~ (^|/)\\.(?!well-known/)" = { return = "403"; };
         "~ \\.php$" = {
           extraConfig = ''
             client_max_body_size 200m;
