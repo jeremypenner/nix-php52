@@ -3,6 +3,9 @@
 I host a community site that is based on Drupal 5, which can't be upgraded without throwing the whole thing in the bin and starting from scratch. 
 Maybe someday I will do that, but in the meantime, people use it, and I have promised those people that I am not going to delete their stuff.
 
+This repo now uses flakes but I haven't bothered to update this readme with usage information, sorry. Hopefully the flake itself is reasonable
+documentation for what the repo provides. If anybody depends on this besides me, sorry I broke your site.
+
 # Usage
 
 I'm probably doing this wrong! I'm very new to NixOS. Bug reports or pull requests to make things more standard welcome. I think eventually I'll want this to 

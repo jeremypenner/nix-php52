@@ -1,8 +1,7 @@
-{ config, lib, pkgs, ...}@args:
+packages: { config, lib, pkgs, ...}@args:
 with lib;
 let
     cfg = config.services.php52-fpm;
-    php52 = import ./default.nix args;
 in {
     options.services.php52-fpm = {
         enable = mkOption {
@@ -25,7 +24,7 @@ in {
             serviceConfig = {
                 Type = "forking";
                 PIDFile = "/run/php52-fpm/php-fpm.pid";
-                ExecStart = "${php52}/bin/php-cgi -x";
+                ExecStart = "${packages."${pkgs.system}".default}/bin/php-cgi -x";
                 User = "nginx";
                 Group = "nginx";
                 RuntimeDirectory = "php52-fpm";
